@@ -8,8 +8,7 @@ return {
       },
     },
     config = function(_, opts)
-      local conform = require "configs.conform"
-      conform.setup(opts)
+      require("conform").setup(opts)
     end,
   },
 
