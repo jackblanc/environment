@@ -49,11 +49,22 @@ return {
 
   -- custom
   {
+    "nvim-tree/nvim-web-devicons",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nvim-web-devicons").setup {
+        -- Your configuration here
+        default = true,
+        strict = true,
+      }
+    end,
+  },
+  {
     "stevearc/oil.nvim",
     lazy = false,
     opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "yetone/avante.nvim",
@@ -71,7 +82,7 @@ return {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "nvim-tree/nvim-web-devicons",
       "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
