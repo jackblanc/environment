@@ -2,13 +2,8 @@ return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
-    opts = {
-      format_on_save = {
-        timeout_ms = 2500,
-      },
-    },
     config = function(_, opts)
-      require("conform").setup(opts)
+      require("configs.conform").setup(opts)
     end,
   },
 
