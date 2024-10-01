@@ -54,5 +54,5 @@ else
     echo "Homebrew installation complete."
 fi
 
-brew install lazygit bun gh mkcert ripgrep
+brew install lazygit oven-sh/bun/bun gh mkcert ripgrep
 
