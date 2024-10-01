@@ -13,3 +13,5 @@
 	default = current
 [core]
 	editor = nvim
+[github]
+	username = jackblanc
