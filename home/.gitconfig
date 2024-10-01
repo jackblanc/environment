@@ -13,5 +13,7 @@
 	default = current
 [core]
 	editor = nvim
+	fsmonitor = true
+	untrackedcache = true
 [github]
 	username = jackblanc
