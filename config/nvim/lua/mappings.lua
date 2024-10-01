@@ -11,6 +11,5 @@ map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 map("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
 
--- Map Command + S to Control + S
-map("n", "<D-s>", "<C-s>", { noremap = true, silent = true })
-map("i", "<D-s>", "<C-o><C-s>", { noremap = true, silent = true })
+-- Map Command + S to save file
+map({ "n", "i", "v" }, "<D-s>", "<cmd>w<CR>", { noremap = true, silent = true })
