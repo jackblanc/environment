@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Jack Blanc
+	email = jackblanc0@proton.me
+
+[alias]
+	c = checkout
+	a = add
+	s = status
+	cm = commit
+	pp = push
+[push]
+	default = current
+[core]
+	editor = nvim
