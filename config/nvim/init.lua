@@ -37,6 +37,3 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
-
--- custom
-vim.opt.relativenumber = true
