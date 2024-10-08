@@ -7,7 +7,6 @@ return {
     end,
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -27,6 +26,19 @@ return {
         "prettier",
       },
     },
+  },
+
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nvim-web-devicons").setup {
+        -- Your configuration here
+        default = true,
+        strict = true,
+      }
+    end,
   },
 
   {
@@ -56,25 +68,6 @@ return {
     },
   },
 
-  -- custom
-  {
-    "nvim-tree/nvim-web-devicons",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("nvim-web-devicons").setup {
-        -- Your configuration here
-        default = true,
-        strict = true,
-      }
-    end,
-  },
-  {
-    "stevearc/oil.nvim",
-    lazy = false,
-    opts = {},
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -85,7 +78,6 @@ return {
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
