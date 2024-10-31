@@ -8,6 +8,11 @@ local M = {}
 M.base46 = {
   theme = "radium",
 
+  options = {
+    relativenumber = true,
+    number = true,
+  },
+
   -- hl_override = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
