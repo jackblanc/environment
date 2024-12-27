@@ -2,6 +2,7 @@ alias g='git'
 alias lg='lazygit'
 
 alias cde='cd ~/environment'
+alias cdu='cd ~/universe'
 
 alias cat='bat'
 
