@@ -20,6 +20,9 @@ for f in $HOME/environment/custom/*; do source $f; done
 # bun
 [ -s "/Users/jackblanc/.bun/_bun" ] && source "/Users/jackblanc/.bun/_bun"
 
+# fzf
+source <(fzf --zsh)
+
 # sst
 export SST_STAGE=local
 

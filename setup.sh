@@ -67,8 +67,6 @@ for file in $PWD/config/*; do
   link config/$name .config/$name
 done
 
-source $HOME/.zshrc
-
 # Check if Homebrew is already installed
 if command -v brew >/dev/null 2>&1; then
     echo "Homebrew is already installed."
@@ -80,7 +78,7 @@ else
 fi
 
 # Install or upgrade packages
-for package in lazygit oven-sh/bun/bun gh mkcert ripgrep neovim ghostty; do
+for package in lazygit oven-sh/bun/bun gh mkcert ripgrep neovim ghostty bat fzf eza; do
     if brew list $package &>/dev/null; then
         echo "Upgrading $package..."
         brew upgrade $package
@@ -89,4 +87,6 @@ for package in lazygit oven-sh/bun/bun gh mkcert ripgrep neovim ghostty; do
         brew install $package
     fi
 done
+
+source $HOME/.zshrc
 
