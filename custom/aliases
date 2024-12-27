@@ -3,6 +3,8 @@ alias lg='lazygit'
 
 alias cde='cd ~/environment'
 
+alias cat='bat'
+
 alias ls='eza $eza_params'
 alias l='eza --git-ignore $eza_params'
 alias ll='eza --all --header --long $eza_params'
