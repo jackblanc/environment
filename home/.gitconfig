@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Jack Blanc
-	email = jackblanc0@proton.me
+	email = jackblanc0@icloud.com
 
 [alias]
 	c = checkout
