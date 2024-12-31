@@ -12,11 +12,6 @@ M.base46 = {
     relativenumber = true,
     number = true,
   },
-
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
 }
 
 return M
