@@ -64,6 +64,19 @@ done
 mkdir -p $HOME/.config
 for file in $PWD/config/*; do
   name=${file##*/}
+  
+  if [ "$name" = "cursor" ]; then
+    mkdir -p "$HOME/Library/Application Support/Cursor/User"
+    link "config/cursor/settings.json" "Library/Application Support/Cursor/User/settings.json"
+    link "config/cursor/keybindings.json" "Library/Application Support/Cursor/User/keybindings.json"
+    # Link to VSCode too    
+    mkdir -p "$HOME/Library/Application Support/Code/User"
+    link "config/cursor/settings.json" "Library/Application Support/Code/User/settings.json"
+    link "config/cursor/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
+    continue
+  fi
+  
+  # Normal config linking
   link config/$name .config/$name
 done
 

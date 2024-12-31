@@ -1,0 +1,39 @@
+{
+  "zenMode.restore": true, // This will open Cursor in zen mode if you closed while in zen mode
+  "zenMode.centerLayout": true, // Personal preference
+  "zenMode.hideLineNumbers": false, // I like to see line numbers
+  "zenMode.fullScreen": false, // I use rectangle and don't want to be fullscreen which zen mode does by default
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Set this to whatever you use most
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
+  "vim.useSystemClipboard": true, // Use system clipboard for yank and paste
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-d>": true // This conflicted with a vs code keybinding. This tells the vim extension to override it.
+  },
+  "vim.normalModeKeyBindings": [
+    // LSP
+    {
+      "before": ["K"], // This shows the LSP hover info
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "r", "a"],
+      "commands": ["editor.action.rename"]
+    },
+    // Apps
+    {
+      "before": ["<leader>", "l", "g"],
+      "commands": ["lazygit-vscode.toggle"]
+    },
+    // Search (I end up mostly using vs code's default search keybindings)
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["leader", "f", "w"],
+      "commands": ["workbench.action.findInFiles"]
+    }
+  ]
+}
