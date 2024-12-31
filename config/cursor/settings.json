@@ -35,5 +35,7 @@
       "before": ["leader", "f", "w"],
       "commands": ["workbench.action.findInFiles"]
     }
-  ]
+  ],
+  "git.confirmSync": false,
+  "workbench.colorTheme": "Catppuccin Macchiato"
 }
