@@ -37,6 +37,9 @@
     }
   ],
   "git.confirmSync": false,
-  "workbench.colorTheme": "Catppuccin Macchiato",
-  "git.enableSmartCommit": true
+  "workbench.colorTheme": "Catppuccin Frappé",
+  "git.enableSmartCommit": true,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  }
 }
