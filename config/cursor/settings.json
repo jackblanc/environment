@@ -41,5 +41,10 @@
   "git.enableSmartCommit": true,
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports.ts": "explicit",
+    "source.organizeImports": "explicit"
   }
 }
