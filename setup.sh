@@ -131,7 +131,7 @@ else
 
   # The bat package is installed as batcat, link to bat
   mkdir -p ~/.local/bin
-  ln -sf /usr/bin/batcat ~/.local/bin/bat
+  sudo ln -sf /usr/bin/batcat /usr/bin/bat
   
   # LazyGit must be installed directly
   LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
