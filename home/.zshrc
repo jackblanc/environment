@@ -34,7 +34,10 @@ for f in $HOME/environment/custom/*; do source $f; done
 
 
 # fzf
-if command -v fzf &>/dev/null; then
+if [ "$OS" = "Linux" ]; then
+    source /usr/share/doc/fzf/examples/completion.zsh
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+elif command -v fzf &>/dev/null; then
     source <(fzf --zsh)
 fi
 

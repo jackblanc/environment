@@ -15,5 +15,6 @@
 	editor = nvim
 	fsmonitor = true
 	untrackedcache = true
+	trustctime = false
 [github]
 	username = jackblanc
