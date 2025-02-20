@@ -41,6 +41,10 @@ elif command -v fzf &>/dev/null; then
     source <(fzf --zsh)
 fi
 
+if [ "$OS" = "Linux" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # sst
 export SST_STAGE=local
 
