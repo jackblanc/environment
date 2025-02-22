@@ -53,3 +53,4 @@ export PATH="$HOME/.nvim/bin:$PATH"
 export EDITOR='nvim'
 export VISUAL='nvim'
 
+export PATH="/opt/homebrew/bin:$PATH"
