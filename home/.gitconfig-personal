@@ -1,0 +1,10 @@
+[user]
+	name = Jack Blanc
+	email = jackblanc0@icloud.com
+
+[github]
+	username = jackblanc
+
+[alias]
+  pp = push
+

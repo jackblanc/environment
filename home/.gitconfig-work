@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Jack Blanc
+	email = jack.blanc@databricks.com
+
+[github]
+	username = jack-blanc_data
+
+[core]
+	hooksPath = /home/jack.blanc/.databricks/githooks
+
+[alias]
+	pp = "!bash -c \"new_args=(); remote=\\\"\\\"; ref=\\\"\\\"; start=0; if [[ \\$0 == \\\"bash\\\" ]]; then start=1; fi; for ((i=start; i<=\\$#; i++)); do arg=\\${!i}; if [[ \\\"\\$arg\\\" != -* ]]; then if [[ \\\"\\$remote\\\" == \\\"\\\" ]]; then remote=\\\"\\$arg\\\"; new_args+=(\\\"\\$arg\\\"); else if [[ \\$ref == \\\"\\\" ]]; then ref=\\\"\\$arg\\\"; fi; if [[ \\\"\\$ref\\\" != jackblanc/* ]]; then new_args+=(\\\"\\$arg:jackblanc/\\$arg\\\"); else new_args+=(\\\"\\$arg\\\"); fi; fi; else new_args+=(\\\"\\$arg\\\"); fi; done; if [[ \\$remote == \\\"\\\" ]]; then new_args+=(\\\"origin\\\"); fi; if [[ \\$ref == \\\"\\\" ]]; then branch=\\$(git branch --show-current); if [[ \\\"\\$branch\\\" != jackblanc/* ]]; then new_args+=(\\\"\\$branch:jackblanc/\\$branch\\\"); else new_args+=(\\\"\\$branch\\\"); fi; fi; git push -u \\\"\\${new_args[@]}\\\"\" "
+
+

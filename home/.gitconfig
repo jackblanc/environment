@@ -1,14 +1,17 @@
-# This is Git's per-user configuration file.
-[user]
-	name = Jack Blanc
-	email = jackblanc0@icloud.com
+[includeIf "gitdir:~/universe/"]
+  path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/projects/"]
+  path = ~/.gitconfig-personal
+[includeIf "gitdir:~/environment/"]
+  path = ~/.gitconfig-personal
+
 
 [alias]
 	c = checkout
 	a = add
 	s = status
 	cm = commit
-	pp = push
 [push]
 	default = current
 [core]
@@ -16,5 +19,6 @@
 	fsmonitor = true
 	untrackedcache = true
 	trustctime = false
-[github]
-	username = jackblanc
+[index]
+	skipHash = false
+
