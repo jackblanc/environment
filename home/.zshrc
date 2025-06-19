@@ -54,3 +54,12 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 export PATH="/opt/homebrew/bin:$PATH"
+
+# bun completions
+[ -s "/Users/jackblanc/.bun/_bun" ] && source "/Users/jackblanc/.bun/_bun"
+export PATH="/Users/jackblanc/.bun/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"
+
+
+# opencode
+export PATH=/Users/jackblanc/.opencode/bin:$PATH

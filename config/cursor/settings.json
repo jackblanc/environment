@@ -43,7 +43,17 @@
     "asvetliakov.vscode-neovim": 1
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.addMissingImports.ts": "explicit"
-  }
+    "source.fixAll.eslint": "explicit"
+  },
+  "explorer.confirmDelete": false,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.lineNumbers": "relative",
+  "explorer.confirmDragAndDrop": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.composer.shouldAllowCustomModes": true,
+  "update.releaseTrack": "prerelease",
+  "cursor.composer.shouldChimeAfterChatFinishes": true
 }

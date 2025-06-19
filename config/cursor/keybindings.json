@@ -65,5 +65,43 @@
   {
     "key": "ctrl+l",
     "command": "workbench.action.focusNextGroup"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "cmd+l",
+    "command": "composerMode.chat"
+  },
+  {
+    "key": "cmd+backspace",
+    "command": "composer.cancelComposerStep",
+    "when": "composerFocused || focusedView =~ /^workbench.panel.aichat.view/"
+  },
+  {
+    "key": "shift+cmd+backspace",
+    "command": "-composer.cancelComposerStep",
+    "when": "composerFocused || focusedView =~ /^workbench.panel.aichat.view/"
+  },
+  {
+    "key": "cmd+backspace",
+    "command": "editor.action.inlineDiffs.rejectAll",
+    "when": "editorTextFocus && @inlineDiffs.rejectAllEdits.isActiveEditorWithDiffs"
+  },
+  {
+    "key": "shift+cmd+backspace",
+    "command": "-editor.action.inlineDiffs.rejectAll",
+    "when": "editorTextFocus && @inlineDiffs.rejectAllEdits.isActiveEditorWithDiffs"
+  },
+  {
+    "key": "cmd+backspace",
+    "command": "editor.action.inlineDiffs.cancelEdits",
+    "when": "editorTextFocus && hasActivelyGeneratingDiff"
+  },
+  {
+    "key": "shift+cmd+backspace",
+    "command": "-editor.action.inlineDiffs.cancelEdits",
+    "when": "editorTextFocus && hasActivelyGeneratingDiff"
   }
 ]
