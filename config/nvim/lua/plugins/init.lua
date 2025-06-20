@@ -47,13 +47,24 @@ return {
     },
     config = function()
       require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ts_server" },
+      
+      -- LSP keybindings
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(event)
+          local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+          end
+          
+          map("gd", vim.lsp.buf.definition, "Go to definition")
+          map("K", vim.lsp.buf.hover, "Hover documentation")
+          map("<leader>rn", vim.lsp.buf.rename, "Rename")
+          map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+        end,
       })
       
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({})
-      lspconfig.ts_server.setup({})
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "ts_ls" },
+      })
     end,
   },
 
