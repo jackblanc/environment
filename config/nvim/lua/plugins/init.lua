@@ -68,6 +68,20 @@ return {
     end,
   },
 
+  -- Git diff viewer
+  {
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("diffview").setup()
+    end,
+    keys = {
+      { "<leader>dv", "<cmd>DiffviewOpen<cr>", desc = "Open diffview" },
+      { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "Close diffview" },
+      { "<leader>dh", "<cmd>DiffviewFileHistory<cr>", desc = "File history" },
+    },
+  },
+
   -- Colorscheme
   {
     "catppuccin/nvim",

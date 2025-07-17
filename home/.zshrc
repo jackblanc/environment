@@ -63,3 +63,4 @@ export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"
 
 # opencode
 export PATH=/Users/jackblanc/.opencode/bin:$PATH
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
