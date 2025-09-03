@@ -1,10 +1,7 @@
 alias g='git'
 alias lg='lazygit'
 
-alias cursor="open -a Cursor ."
-
 alias cde='cd ~/environment'
-alias cdu='cd ~/universe'
 alias cdr='cd ~/projects/reservations'
 
 alias cat='bat'

@@ -27,6 +27,12 @@ if [ "$OS" = "Darwin" ]; then
 fi
 
 # Source custom files
+if [ "$OS" = "Linux" ]; then
+    source "$HOME/environment/custom/aliases.dbrx"
+fi
+source "$HOME/environment/custom/aliases"
+source "$HOME/environment/custom/history"
+
 for f in $HOME/environment/custom/*; do source $f; done
 
 # Source machine-specific, untracked file in $HOME/.secrets

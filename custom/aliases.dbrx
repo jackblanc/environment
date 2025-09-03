@@ -1,0 +1,6 @@
+alias gs='git stack'
+
+alias claude="llm agent session"
+
+alias cdu='cd ~/universe'
+
