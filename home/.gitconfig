@@ -26,3 +26,5 @@
 [includeIf "gitdir:~/universe/.git/worktrees/"]
   path = ~/.gitconfig-work
 
+[credential]
+	helper = store
