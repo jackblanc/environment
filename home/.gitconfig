@@ -1,17 +1,12 @@
-[includeIf "gitdir:~/universe/"]
-  path = ~/.gitconfig-work
-
-[includeIf "gitdir:~/projects/"]
-  path = ~/.gitconfig-personal
-[includeIf "gitdir:~/environment/"]
-  path = ~/.gitconfig-personal
-
-
+[user]
+	name = Jack Blanc
+	email = jackblanc0@icloud.com
 [alias]
 	c = checkout
 	a = add
 	s = status
 	cm = commit
+	pp = push
 [push]
 	default = current
 [core]
@@ -21,4 +16,13 @@
 	trustctime = false
 [index]
 	skipHash = false
+[github]
+	username = jackblanc
+[rerere]
+	enabled = true
+
+[includeIf "gitdir:~/universe/"]
+  path = ~/.gitconfig-work
+[includeIf "gitdir:~/universe/.git/worktrees/"]
+  path = ~/.gitconfig-work
 
