@@ -4,5 +4,13 @@
   "theme": "system",
   "model": "anthropic/claude-sonnet-4-20250514",
   "autoupdate": true,
+  "formatter": {
+    "prettier": {
+      "disabled": false
+    },
+    "ruff": {
+      "disabled": false
+    }
+  }
 }
 
