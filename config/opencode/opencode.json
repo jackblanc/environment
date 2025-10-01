@@ -11,6 +11,25 @@
     "ruff": {
       "disabled": false
     }
+  },
+  "agent": {
+    "review": {
+      "description": "Reviews code for best practices and potential issues",
+      "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-20250514",
+      "temperature": 0.1,
+      "prompt": "You are an expert code reviewer focused on identifying best practices, potential bugs, security vulnerabilities, and performance issues. Provide constructive feedback that helps improve code quality while being specific and actionable.",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "allow"
+      }
+    }
   }
 }
 
