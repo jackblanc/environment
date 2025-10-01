@@ -20,13 +20,50 @@
       "temperature": 0.1,
       "prompt": "You are an expert code reviewer focused on identifying best practices, potential bugs, security vulnerabilities, and performance issues. Provide constructive feedback that helps improve code quality while being specific and actionable.",
       "tools": {
-        "write": false,
+        "bash": true,
         "edit": false,
-        "bash": false
+        "write": false,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "patch": false,
+        "todowrite": false,
+        "todoread": true,
+        "webfetch": true
       },
       "permission": {
+        "bash": {
+          "git status": "allow",
+          "git log *": "allow",
+          "git diff *": "allow",
+          "git show *": "allow",
+          "git branch *": "allow",
+          "git remote *": "allow",
+          "git config --get *": "allow",
+          "git config --list": "allow",
+          "git config -l": "allow",
+          "git ls-files *": "allow",
+          "gh pr list *": "allow",
+          "gh pr view *": "allow",
+          "gh issue list *": "allow",
+          "gh issue view *": "allow",
+          "gh repo view *": "allow",
+          "gh auth status": "allow",
+          "gh pr review *": "ask",
+          "gh * create *": "ask",
+          "gh * edit *": "ask",
+          "*": "ask"
+        },
         "edit": "deny",
-        "bash": "deny",
+        "write": "deny",
+        "read": "allow",
+        "grep": "allow",
+        "glob": "allow",
+        "list": "allow",
+        "patch": "deny",
+        "todowrite": "deny",
+        "todoread": "allow",
         "webfetch": "allow"
       }
     }
