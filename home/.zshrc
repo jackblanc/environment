@@ -8,11 +8,6 @@ else
     export MACHINE_TYPE="unknown"
 fi
 
-# Set terminal type for Linux
-if [ "$OS" = "Linux" ]; then
-    export TERM="xterm-256color"
-fi
-
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -82,3 +77,17 @@ export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+tmux_universe_init() {
+  tmux new-session -d -s u1 -c ~/universe
+  tmux new-session -d -s u2 -c ~/u2
+  tmux new-session -d -s u3 -c ~/u3
+  tmux new-session -d -s u4 -c ~/u4
+}
+
+
