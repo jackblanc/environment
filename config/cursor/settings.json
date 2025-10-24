@@ -1,4 +1,7 @@
 {
+  "remote.SSH.serverShutdownTimeout": 3600, // DO NOT EDIT: Added by `arca ide cursor`
+  "remote.SSH.showTrafficMonitor": false, // DO NOT EDIT: Added by `arca ide cursor`
+
   "zenMode.restore": true, // This will open Cursor in zen mode if you closed while in zen mode
   "zenMode.centerLayout": true, // Personal preference
   "zenMode.hideLineNumbers": false, // I like to see line numbers
@@ -38,9 +41,6 @@
   "git.confirmSync": false,
   "workbench.colorTheme": "Catppuccin Frappé",
   "git.enableSmartCommit": true,
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
@@ -54,5 +54,26 @@
   "cursor.cpp.enablePartialAccepts": true,
   "cursor.composer.shouldAllowCustomModes": true,
   "update.releaseTrack": "prerelease",
-  "cursor.composer.shouldChimeAfterChatFinishes": true
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "remote.SSH.remotePlatform": {
+    "arca.ssh": "linux"
+  },
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "remote.autoForwardPortsSource": "hybrid",
+  "typescript.tsserver.useSyntaxServer": "never",
+  "typescript.tsserver.enableRegionDiagnostics": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  "typescript.tsserver.nodePath": "/Users/jack.blanc/.nvm/versions/node/v22.19.0/bin/node",
+  "typescript.tsserver.maxTsServerMemory": 12288,
+  "typescript.tsserver.log": "off",
+  "typescript.tsserver.enableTracing": false,
+  "editor.pasteAs.enabled": false,
+  "remote.SSH.connectTimeout": 3600,
+  "[scala]": {
+    "editor.defaultFormatter": "scalameta.metals"
+  }
 }
