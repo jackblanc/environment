@@ -87,7 +87,6 @@ tmux_universe_init() {
   tmux new-session -d -s u1 -c ~/universe
   tmux new-session -d -s u2 -c ~/u2
   tmux new-session -d -s u3 -c ~/u3
-  tmux new-session -d -s u4 -c ~/u4
 }
 
 
