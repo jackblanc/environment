@@ -5,7 +5,6 @@
   "zenMode.fullScreen": false, // I use rectangle and don't want to be fullscreen which zen mode does by default
   "editor.defaultFormatter": "esbenp.prettier-vscode", // Set this to whatever you use most
   "editor.formatOnSave": true,
-  "editor.wordWrap": "on",
   "vim.useSystemClipboard": true, // Use system clipboard for yank and paste
   "vim.leader": "<space>",
   "vim.handleKeys": {
