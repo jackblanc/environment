@@ -1,0 +1,6 @@
+# Work EC2 specific aliases
+# This file is loaded only on work-ec2 machines
+# Add machine-specific shortcuts, paths, or commands here
+
+# Example:
+# alias logs='tail -f /var/log/app.log'

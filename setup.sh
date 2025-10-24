@@ -26,6 +26,34 @@ clone_or_pull() {
 	fi
 }
 
+# Prompt for machine type if not already set
+if [ ! -f "$PWD/.machine_type" ]; then
+	echo ""
+	echo "==================================="
+	echo "Machine Type Configuration"
+	echo "==================================="
+	echo "What type of machine is this?"
+	echo "  1) personal-mac    - Personal MacBook Pro"
+	echo "  2) work-mac        - Work MacBook Pro (local)"
+	echo "  3) work-ec2        - Work EC2 Instance (remote)"
+	echo ""
+	read "choice?Enter choice (1-3): "
+
+	case $choice in
+		1) MACHINE_TYPE="personal-mac" ;;
+		2) MACHINE_TYPE="work-mac" ;;
+		3) MACHINE_TYPE="work-ec2" ;;
+		*) echo "Invalid choice. Please run setup again." && exit 1 ;;
+	esac
+
+	echo $MACHINE_TYPE > "$PWD/.machine_type"
+	echo "Machine type set to: $MACHINE_TYPE"
+	echo ""
+else
+	MACHINE_TYPE=$(cat "$PWD/.machine_type")
+	echo "Machine type already set to: $MACHINE_TYPE"
+fi
+
 # Detect the OS
 OS=$(uname)
 echo "Detected OS: $OS"
@@ -68,14 +96,16 @@ done
 mkdir -p $HOME/.config
 for file in $PWD/config/*; do
 	name=${file##*/}
-	
+
 	if [ "$name" = "cursor" ]; then
-		if [ "$OS" = "Darwin" ]; then
+		if [ "$MACHINE_TYPE" = "work-ec2" ]; then
+			echo "Skipping Cursor setup on EC2 instance."
+		elif [ "$OS" = "Darwin" ]; then
 			# MacOS-specific cursor setup
 			mkdir -p "$HOME/Library/Application Support/Cursor/User"
 			link "config/cursor/settings.json" "Library/Application Support/Cursor/User/settings.json"
 			link "config/cursor/keybindings.json" "Library/Application Support/Cursor/User/keybindings.json"
-			# Link to VSCode too    
+			# Link to VSCode too
 			mkdir -p "$HOME/Library/Application Support/Code/User"
 			link "config/cursor/settings.json" "Library/Application Support/Code/User/settings.json"
 			link "config/cursor/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
@@ -84,7 +114,13 @@ for file in $PWD/config/*; do
 		fi
 		continue
 	fi
-	
+
+	# Skip Ghostty config on EC2
+	if [ "$name" = "ghostty" ] && [ "$MACHINE_TYPE" = "work-ec2" ]; then
+		echo "Skipping Ghostty setup on EC2 instance."
+		continue
+	fi
+
 	# Normal config linking
 	link config/$name .config/$name
 done
@@ -100,11 +136,16 @@ if [ "$OS" = "Darwin" ]; then
 		echo "Homebrew installation complete."
 	fi
 
-	# Install or upgrade packages using Homebrew
-	for package in lazygit oven-sh/bun/bun gh mkcert ripgrep neovim ghostty bat fzf eza; do
+	# Define packages - skip ghostty on EC2
+	PACKAGES="lazygit oven-sh/bun/bun gh mkcert ripgrep neovim bat fzf eza"
+	if [ "$MACHINE_TYPE" != "work-ec2" ]; then
+		PACKAGES="$PACKAGES ghostty"
+	fi
+
+	# Install packages using Homebrew (idempotent - only installs if missing)
+	for package in $PACKAGES; do
 		if brew list $package &>/dev/null; then
-			echo "Upgrading $package..."
-			brew upgrade $package
+			echo "$package is already installed."
 		else
 			echo "Installing $package..."
 			brew install $package
@@ -112,13 +153,18 @@ if [ "$OS" = "Darwin" ]; then
 	done
 else
 	# Linux-specific package installation using apt
-  # eza is available from deb.gierens.de, key must be added
-  sudo mkdir -p /etc/apt/keyrings
-  wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-  echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-  sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+	# eza is available from deb.gierens.de, key must be added
+	if [ ! -f /etc/apt/keyrings/gierens.gpg ]; then
+		echo "Adding eza repository..."
+		sudo mkdir -p /etc/apt/keyrings
+		wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+		echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+		sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+	else
+		echo "eza repository already configured."
+	fi
 
-  # Install packages
+	# Install packages
 	echo "Installing packages using apt..."
 	sudo DATABRICKS_ALLOW_INSTALL=1 apt update
 	sudo DATABRICKS_ALLOW_INSTALL=1 apt install -y \
@@ -126,20 +172,26 @@ else
 		neovim \
 		bat \
 		fzf \
-		eza  # 'eza' alternative in apt is 'exa'
-  echo "All packages installed or updated via apt."
+		eza
+	echo "All packages installed or updated via apt."
 
-  # The bat package is installed as batcat, link to bat
-  mkdir -p ~/.local/bin
-  sudo ln -sf /usr/bin/batcat /usr/bin/bat
-  
-  # LazyGit must be installed directly
-  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
-  echo "Installing LazyGit version $LAZYGIT_VERSION"
-  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-  tar xf lazygit.tar.gz lazygit
-  sudo install lazygit -D -t /usr/local/bin/
-  rm lazygit lazygit.tar.gz
+	# The bat package is installed as batcat, link to bat
+	mkdir -p ~/.local/bin
+	if [ ! -f /usr/bin/bat ]; then
+		sudo ln -sf /usr/bin/batcat /usr/bin/bat
+	fi
+
+	# LazyGit must be installed directly
+	if ! command -v lazygit >/dev/null 2>&1; then
+		LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
+		echo "Installing LazyGit version $LAZYGIT_VERSION"
+		curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+		tar xf lazygit.tar.gz lazygit
+		sudo install lazygit -D -t /usr/local/bin/
+		rm lazygit lazygit.tar.gz
+	else
+		echo "lazygit is already installed."
+	fi
 fi
 
 source $HOME/.zshrc

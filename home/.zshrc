@@ -1,6 +1,13 @@
 # Detect OS
 OS=$(uname)
 
+# Load machine type
+if [ -f "$HOME/environment/.machine_type" ]; then
+    export MACHINE_TYPE=$(cat "$HOME/environment/.machine_type")
+else
+    export MACHINE_TYPE="unknown"
+fi
+
 # Set terminal type for Linux
 if [ "$OS" = "Linux" ]; then
     export TERM="xterm-256color"
@@ -26,17 +33,23 @@ if [ "$OS" = "Darwin" ]; then
     [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 fi
 
-# Source custom files
-if [ "$OS" = "Linux" ]; then
-    source "$HOME/environment/custom/aliases.dbrx"
+# Source custom files in order
+# 1. Base aliases (shared by all machines)
+[ -f "$HOME/environment/custom/aliases" ] && source "$HOME/environment/custom/aliases"
+
+# 2. Work-specific aliases (shared by work-mac and work-ec2)
+if [[ "$MACHINE_TYPE" == work-* ]]; then
+    [ -f "$HOME/environment/custom/aliases.work" ] && source "$HOME/environment/custom/aliases.work"
 fi
-source "$HOME/environment/custom/aliases"
-source "$HOME/environment/custom/history"
 
-for f in $HOME/environment/custom/*; do source $f; done
+# 3. Machine-specific aliases
+[ -f "$HOME/environment/custom/aliases.$MACHINE_TYPE" ] && source "$HOME/environment/custom/aliases.$MACHINE_TYPE"
 
-# Source machine-specific, untracked file in $HOME/.secrets
-[ -s $HOME/.secrets ] && source $HOME/.secrets
+# 4. History configuration
+[ -f "$HOME/environment/custom/history" ] && source "$HOME/environment/custom/history"
+
+# 5. Machine-specific secrets/env (untracked file in $HOME/.secrets)
+[ -s "$HOME/.secrets" ] && source "$HOME/.secrets"
 
 
 # fzf
@@ -62,11 +75,10 @@ export VISUAL='nvim'
 export PATH="/opt/homebrew/bin:$PATH"
 
 # bun completions
-[ -s "/Users/jackblanc/.bun/_bun" ] && source "/Users/jackblanc/.bun/_bun"
-export PATH="/Users/jackblanc/.bun/bin:$PATH"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+export PATH="$HOME/.bun/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"
 
-
 # opencode
-export PATH=/Users/jackblanc/.opencode/bin:$PATH
+export PATH="$HOME/.opencode/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"

@@ -1,0 +1,6 @@
+# Work Mac specific aliases
+# This file is loaded only on work-mac machines
+# Add machine-specific shortcuts, paths, or commands here
+
+# Example:
+# alias vpn='sudo openconnect vpn.company.com'

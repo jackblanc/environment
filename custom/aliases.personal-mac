@@ -1,0 +1,6 @@
+# Personal Mac specific aliases
+# This file is loaded only on personal-mac machines
+# Add machine-specific shortcuts, paths, or commands here
+
+# Example:
+# alias cdp='cd ~/personal-projects'
